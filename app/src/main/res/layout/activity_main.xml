@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main">
+
+    <!-- 顶部渐变头部区域 -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:background="@drawable/header_gradient"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="48dp"
+        android:paddingBottom="32dp">
+
+        <!-- APP名称 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🎙 智能录音机"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.05"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI语音转文字 · 智能总结"
+            android:textColor="#CCE0FFFF"
+            android:textSize="13sp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 计时器 -->
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textColor="#FFFFFF"
+            android:textSize="52sp"
+            android:textStyle="bold"
+            android:letterSpacing="-0.02"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- 状态文字 -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击下方按钮开始录音"
+            android:textColor="#CCFFFFFF"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
+    <!-- 波形视图（叠在头部底部） -->
+    <com.voicerecorder.app.WaveformView
+        android:id="@+id/waveformView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="220dp"
+        android:alpha="0.6"/>
+
+    <!-- 主体内容（向上偏移与头部重叠） -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="250dp">
+
+        <!-- 录音列表标题 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="我的录音"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvRecordingCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0 条"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"/>
+
+        </LinearLayout>
+
+        <!-- 空状态提示 -->
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="暂无录音\n点击下方麦克风按钮开始录制"
+            android:textColor="@color/text_hint"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:paddingTop="60dp"
+            android:lineSpacingMultiplier="1.6"
+            android:visibility="gone"/>
+
+        <!-- 录音列表 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRecordings"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="100dp"
+            android:clipToPadding="false"/>
+
+    </LinearLayout>
+
+    <!-- 录音FAB按钮（固定在底部中央） -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRecord"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="32dp"
+        app:backgroundTint="@color/primary"
+        app:tint="@color/white"
+        app:elevation="12dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_mic"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
